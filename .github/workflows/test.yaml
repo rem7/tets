@@ -1,4 +1,4 @@
-name: Node package action tester
+name: go custom action
 
 on:
   push:
