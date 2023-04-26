@@ -1,0 +1,34 @@
+name: My Go Action
+description: An example GitHub Actions plugin written in Go
+inputs:
+  name:
+    description: 'The name of the person to greet'
+    required: true
+    default: 'World'
+outputs:
+  greeting:
+    description: 'The greeting message'
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+    - name: Build and run Go code
+      run: |
+        go build -o my-action
+        ./my-action ${{ inputs.name }} > greeting.txt
+    - name: Set output
+      id: set-output
+      run: echo "::set-output name=greeting::$(cat greeting.txt)"
+      shell: bash
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: greeting
+        path: greeting.txt
+
+
