@@ -23,7 +23,7 @@ runs:
         go build -o my-action
         ./my-action ${{ inputs.name }} > greeting.txt
     - name: Set output
-      run: echo "greeting=$(cat greeting.txt)" >> $GITHUB_OUTPUT
+      run: echo "greeting=blah" >> $GITHUB_OUTPUT
       shell: bash
     - name: Upload artifact
       uses: actions/upload-artifact@v3

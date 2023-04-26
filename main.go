@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-    name := os.Getenv("INPUT_NAME")
+    name := os.Argv[1]
     if name == "" {
         name = "World"
     }
